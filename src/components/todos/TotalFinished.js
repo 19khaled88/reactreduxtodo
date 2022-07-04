@@ -4,7 +4,7 @@ const TotalFinished = () => {
         state.todos.filter(todo=>todo.completed === true)
     )
   return (
-    <div style={{fontSize:'20px',paddingTop:'10px'}}>
+    <div style={{fontSize:'20px',paddingBottom:'10px'}}>
        Total Completed Tasks: {totalFinished.length}
     </div>
   );
