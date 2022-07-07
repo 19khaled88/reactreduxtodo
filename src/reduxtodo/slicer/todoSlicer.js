@@ -59,9 +59,18 @@ export const todoSlicer = createSlice({
                 localStorage.setItem('todoList',JSON.stringify(todoListArr))
                 state.todoList = todoListArr
             }
+        },
+        taskSort:(state,action)=>{
+            const todoList = JSON.parse(localStorage.getItem('todoList'))
+            const filtered = todoList.filter((todo)=>todo.status === action.payload.status)
+            if(action.payload.status === 'completed' || action.payload.status === 'not completed'){
+                state.todoList = filtered
+            }else if(action.payload.status === 'all'){
+                state.todoList = todoList
+            }
         }
     }
 })
 
-export const {addTodo,deleteTodo,updateTodo} = todoSlicer.actions;
+export const {addTodo,deleteTodo,updateTodo,taskSort} = todoSlicer.actions;
 export default todoSlicer.reducer

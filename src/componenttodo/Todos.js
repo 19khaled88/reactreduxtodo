@@ -2,7 +2,7 @@ import { useRef } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid } from 'uuid';
-import { addTodo } from "../reduxtodo/slicer/todoSlicer";
+import { addTodo, taskSort } from "../reduxtodo/slicer/todoSlicer";
 import AllTodos from "./AllTodos";
 const Todos = ({children}) => {
   const titleRef = useRef('')
@@ -31,7 +31,9 @@ const Todos = ({children}) => {
     }
   }
  
- 
+ const taskStatus=(status)=>{
+  dispatch(taskSort({status:status}))
+ }
   return (
     <>
     <div className="px-56 flex flex-row justify-between">
@@ -44,8 +46,9 @@ const Todos = ({children}) => {
             <div className="badge absolute h-10 w-10 -right-4 -top-7 bg-orange-400 border-0">{allTodos.length}</div>
         </label>
         <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
+          <li><a onClick={()=>taskStatus('completed')}>Completed</a></li>
+          <li><a onClick={()=>taskStatus('not completed')}>Not Completed</a></li>
+          <li><a onClick={()=>taskStatus('all')}>All</a></li>
         </ul>
       </div>
 
