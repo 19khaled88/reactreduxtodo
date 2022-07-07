@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon, Menu, Table } from 'semantic-ui-react';
-import { addTodo, deleteTodo, toggleCompleted } from '../../redux/slicer/todoSlice';
+import { addTodo, deleteTodo, getTodosAsync, toggleCompleted } from '../../redux/slicer/todoSlice';
+ 
 const Todos = () => {
 
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
   const todos = useSelector((state)=>state.todos)
 
+  useEffect(()=>{
+    dispatch(getTodosAsync())
+  },[dispatch])
 
   const submitHandler=(e)=>{
     e.preventDefault()
