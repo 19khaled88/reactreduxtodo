@@ -33,6 +33,7 @@ const Todos = ({children}) => {
  
  const taskStatus=(status)=>{
   dispatch(taskSort({status:status}))
+  toast.success('Task deleted!')
  }
   return (
     <>
